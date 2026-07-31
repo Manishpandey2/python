@@ -6,6 +6,5 @@
 #     file.write("Learn Python Build AI Agent Practice Daily")
 
 with open("students.txt","r") as file:
-    content = file.read()
-
-print(content)
+    for line in file:
+        print(f"Student : {line.strip()}")

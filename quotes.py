@@ -1,4 +1,5 @@
-quotes = [
+try:
+    quotes = [
     {
         "text": "Success is not final.",
         "author": "Winston Churchill"
@@ -11,11 +12,15 @@ quotes = [
         "text": "Code is like humor.",
         "author": "Cory House"
     }
-]
-choice = int(input("Choose a quote(0-2): "))
+    ]
+    choice = int(input("Choose a quote(0-2): "))
 
-print("----------------------------")
+    print("----------------------------")
 
-print(quotes[choice]["text"])
-print(f"- {quotes[choice]['author']}")
-print("----------------------------")
+    print(quotes[choice]["text"])
+    print(f"- {quotes[choice]['author']}")
+    print("----------------------------")
+except IndexError:
+    print("Invalid Choice")
+except ValueError:
+    print("Please enter a number")

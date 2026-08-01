@@ -101,24 +101,9 @@
 #another version
 
 import random
-quotes= [
-        {
-            "text" : "nepal hami nepali sabaiko sajha ghar ho",
-            "author": "Manish Pandey"
-        },
-        {
-            "text" : "Happy birthday to you",
-            "author": "ramesh kaka"
-        },
-        {
-            "text" : "oh ho vailai kasto chitikka dekhiyo",
-            "author": "kapada pasale"
-        },
-        {
-            "text" : "good morning, tell me how can i help you",
-            "author": "chatgpt"
-        },
-    ]
+import json
+with open("quotes.json","r") as file:
+    quotes = json.load(file)
 
 print("=== Random Qoute Generator ====")
 
@@ -159,13 +144,18 @@ while True:
         text = input("Enter Qoute: ")
         author = input("Enter Author Name: ")
         quotes.append({"text" : text, "author" : author})
+        with open("quotes.json","w") as file:
+            json.dump(quotes, file, indent = 4)
     elif choose == 4:
         print("All Qoutes")
-        i = 0
+        
         for i, quote in enumerate(quotes):
             print(f"{i} - {quote['text']}")
         remove = int(input("Enter the index value of quote which you want to delete: "))
+        
         del quotes[remove]
+        with open("quotes.json","w") as file:
+            json.dump(quotes, file, indent = 4)
     elif choose == 5:
         Author = input("Author Name: ").strip().lower()
         Found = False

@@ -122,13 +122,18 @@ quotes= [
 
 print("=== Random Qoute Generator ====")
 
+fav = None
+count = 0   
 
-    
 while True:
      
     print("1. Show Qoute")
     print("2. Exit")
-
+    print("3. Add Yours")
+    print("4. Remove a quote")
+    print("5. Search by Author")
+    print("6. Favourite Quote")
+    print("7. Show all Quote")
     quote = random.choice(quotes)
     try:
         choose = int(input("Choose: "))
@@ -142,9 +147,58 @@ while True:
         print(f" - {quote['author']}")
     
         print("-----------------------")
-    
+        fav = input("To pick your favourte quote write authors name: ")
+
+        count += 1
+        print(f"You saw {count} times quote")
+
     elif choose ==2:
         print("Good Bye!")
         break
+    elif choose ==3:
+        text = input("Enter Qoute: ")
+        author = input("Enter Author Name: ")
+        quotes.append({"text" : text, "author" : author})
+    elif choose == 4:
+        print("All Qoutes")
+        i = 0
+        for i, quote in enumerate(quotes):
+            print(f"{i} - {quote['text']}")
+        remove = int(input("Enter the index value of quote which you want to delete: "))
+        del quotes[remove]
+    elif choose == 5:
+        Author = input("Author Name: ").strip().lower()
+        Found = False
+        for quote in quotes:
+            if quote["author"].strip().lower() == Author:
+                        print("-----------------------")
+
+                        print(quote["text"])
+                        print(f" - {quote['author']}")
+    
+                        print("-----------------------")
+                        Found = True
+        if not Found:
+            print("There is no such authors")
+    elif choose == 6:
+        
+        if fav==None : 
+            print("There is no favourite quote selected yet")
+        for quote in quotes:
+            if quote["author"] == fav:
+                print("-----------------------")
+
+                print(quote["text"]);
+                print(f" - {quote['author']}")
+                print("-----------------------")
+        
+
+    elif choose == 7: 
+        print("================ All Quote =====================")
+        for i , quote in enumerate(quotes):
+            print(i)
+            print(quote['text'])
+            print(f" - {quote['author']}")
+            print("***********************")
     else:
         print("Invalid Choice")

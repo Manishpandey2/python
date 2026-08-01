@@ -147,7 +147,7 @@ while True:
         print(f" - {quote['author']}")
     
         print("-----------------------")
-        fav = input("To pick your favourte quote write authors name: ")
+        fav = input("To pick your favourte quote write authors name: ").strip().lower
 
         count += 1
         print(f"You saw {count} times quote")
@@ -185,7 +185,7 @@ while True:
         if fav==None : 
             print("There is no favourite quote selected yet")
         for quote in quotes:
-            if quote["author"] == fav:
+            if quote["author"].strip().lower() == fav:
                 print("-----------------------")
 
                 print(quote["text"]);

@@ -119,6 +119,7 @@ while True:
     print("5. Search by Author")
     print("6. Favourite Quote")
     print("7. Show all Quote")
+    print("8. Update Qoute")
     quote = random.choice(quotes)
     try:
         choose = int(input("Choose: "))
@@ -132,7 +133,7 @@ while True:
         print(f" - {quote['author']}")
     
         print("-----------------------")
-        fav = input("To pick your favourte quote write authors name: ").strip().lower
+        fav = input("To pick your favourte quote write authors name: ").strip().lower()
 
         count += 1
         print(f"You saw {count} times quote")
@@ -146,6 +147,8 @@ while True:
         quotes.append({"text" : text, "author" : author})
         with open("quotes.json","w") as file:
             json.dump(quotes, file, indent = 4)
+
+        print("New Qoute Addeded Successfully")
     elif choose == 4:
         print("All Qoutes")
         
@@ -190,5 +193,31 @@ while True:
             print(quote['text'])
             print(f" - {quote['author']}")
             print("***********************")
+
+    elif choose == 8:
+        print("====================Update====================")
+        for i, quote in enumerate(quotes):
+            print("!!!!!!!!!!!!!!!!!!!!!!!!!!!!!")
+            print(i)
+            print(quote["text"])
+            print(f" - {quote['author']}")
+            print("!!!!!!!!!!!!!!!!!!!!!!!!!!!!!")
+        try:
+            update_index = int(input("Enter the number which one would you like to update: "))
+            if update_index<len(quotes):
+            new_text = input("Enter new text: ")
+            new_author = input("Enter new author: ").strip().lower()
+            quotes[update_index]['text'] = new_text
+            quotes[update_index]['author'] = new_author
+            with open("quotes.json", "w") as file:
+                json.dump(quotes, file, indent = 4)
+            print("Quote updated Successfully")
+        except IndexError:
+            print("Enter valid Index")
+        except ValueError:
+            Print("Enter only valued value")
+
+
+
     else:
         print("Invalid Choice")
